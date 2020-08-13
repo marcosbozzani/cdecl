@@ -5,5 +5,5 @@ install:
   - powershell "iex (new-object net.webclient).downloadstring('https://get.scoop.sh')"
   - export PATH="$PATH:"~/scoop/shims/
   - scoop bucket add extras
-  - scoop install universal-ctags
+  - scoop install make universal-ctags
 script: make && make test
