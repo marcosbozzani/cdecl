@@ -1,2 +1,9 @@
 os: windows
 language: c
+install:
+  - powershell "set-executionpolicy -executionpolicy remotesigned -scope currentuser"
+  - powershell "iex (new-object net.webclient).downloadstring('https://get.scoop.sh')"
+  - export PATH="$PATH:"~/scoop/shims/
+  - scoop bucket add extras
+  - scoop install universal-ctags
+script: make && make test
