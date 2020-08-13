@@ -20,16 +20,10 @@ char *parse_type(const char *typeref);
 
 int main(int argc, char **argv)
 {
-    if (isatty(fileno(stdin)))
+    if (argc < 2)
     {
-        if (argc < 2)
-        {
-            print_usage();
-            return ~0;
-        }
-    }
-    else
-    {
+        print_usage();
+        return ~0;
     }
 
     kinds_t kinds = {0};
@@ -81,6 +75,7 @@ int main(int argc, char **argv)
     char *command = null;
     asprintf(&command, "%s%s", ctags, argv[1]);
     stream_t *ctags_stream = stream_open_process(command, "r");
+    memory_free(command);
 
     json_set_allocation_functions(memory_alloc, free);
 
@@ -157,15 +152,10 @@ int main(int argc, char **argv)
         {
             printf("typedef union %s %s;\n", name, name);
         }
-        else
-        {
-            // printf("%s: %s;\n", kind, name);
-        }
 
         json_value_free(root);
     }
 
-    memory_free(command);
     memory_free(line);
     stream_close_process(ctags_stream);
 
