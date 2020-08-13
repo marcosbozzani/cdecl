@@ -1,0 +1,15 @@
+int g_var;
+const int g_const;
+static int s_var;
+static const int s_const;
+void g_void_func();
+int g_int_func();
+void g_void_func_int(int i);
+void g_void_func_int_str(int i, char * s);
+static void s_void_func();
+static int s_int_func();
+static void s_void_func_int(int i);
+static void s_void_func_int_str(int i, char * s);
+inline static void inline_func();
+typedef union union_t union_t;
+typedef struct struct_t struct_t;
