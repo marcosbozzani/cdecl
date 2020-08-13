@@ -6,4 +6,4 @@ install:
   - export PATH="$PATH:"~/scoop/shims/
   - scoop bucket add extras
   - scoop install make universal-ctags
-script: cmd /c "make && make test"
+script: cmd //c "make && make test"
