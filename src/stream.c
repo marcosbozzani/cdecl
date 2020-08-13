@@ -43,7 +43,7 @@ void stream_close_process(stream_t *stream)
 
 int stream_read_all(char **result, stream_t *stream)
 {
-    char buffer[16];
+    char buffer[4096];
     *result = memory_alloc(sizeof(char) * sizeof(buffer));
     **result = '\0';
 
@@ -59,7 +59,7 @@ int stream_read_all(char **result, stream_t *stream)
 
 int stream_read_line(char **result, stream_t *stream)
 {
-    char buffer[16];
+    char buffer[4096];
     *result = memory_alloc(sizeof(char) * sizeof(buffer));
     **result = '\0';
 
