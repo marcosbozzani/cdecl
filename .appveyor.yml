@@ -23,10 +23,9 @@ deploy:
   description: 'Release $(APPVEYOR_REPO_TAG_NAME)'
   on:
     APPVEYOR_REPO_TAG: true
-  auth_token:
-    secure: EjrQ/UksV/Z9ahXKENFr1gyGO778GPOyIRKvtRUZMWGxQ0SleqQDXMxfRjtqh9jd
+  auth_token: $(auth_token)
 
-after_deploy:
+on_success:
   - ps: |
       if (${env:APPVEYOR_REPO_TAG}) {
         $tag = ${env:APPVEYOR_REPO_TAG_NAME}
@@ -35,6 +34,13 @@ after_deploy:
         $manifest.url = $manifest.url -replace "v([\d.])+", $tag
         $manifest.hash = $hash
         $manifest | convertto-json | set-content cdecl.json
+        
+        git config --global credential.helper store
+        add-content "$HOME\.git-credentials" "https://$($env:auth_token):x-oauth-basic@github.com`n" -nonewline
+        git config --global user.email "marcosbozzani@gmail.com"
+        git config --global user.name "marcosbozzani"
+        git config --global core.autocrlf true
+        git checkout master
         git add cdecl.json
         git commit -m "release($tag): update cdecl.json [skip ci]"
         git push
@@ -42,3 +48,7 @@ after_deploy:
       
 skip_commits:
   message: /^chore/
+
+environment:
+  auth_token:
+    secure: EjrQ/UksV/Z9ahXKENFr1gyGO778GPOyIRKvtRUZMWGxQ0SleqQDXMxfRjtqh9jd
