@@ -35,8 +35,8 @@ on_success:
         $manifest.hash = $hash
         $manifest | convertto-json | set-content cdecl.json
         
-        git config --global credential.helper store
         add-content "$HOME\.git-credentials" "https://$($env:auth_token):x-oauth-basic@github.com`n" -nonewline
+        git config --global credential.helper store
         git config --global user.email "marcosbozzani@gmail.com"
         git config --global user.name "marcosbozzani"
         git config --global core.autocrlf true
