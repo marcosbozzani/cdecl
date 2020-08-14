@@ -5,6 +5,6 @@
     "license":  "MIT",
     "bin":  "cdecl.exe",
     "url":  "https://github.com/marcosbozzani/cdecl/releases/download/v0.1.0/cdecl.exe",
-    "hash":  "B8F7E5CA58699FE0085EC51636F1F69B947AE84545A48A328A72BDD8A2588E2B",
+    "hash":  "779BBC489A6D5A935FB54C95070D58D2FC1BE5455F9027764366FD1B9411590A",
     "depends":  "universal-ctags"
 }
