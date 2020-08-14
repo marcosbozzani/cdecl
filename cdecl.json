@@ -1,19 +1,10 @@
 {
-  "version": "0.1.1",
-  "homepage": "https://github.com/marcosbozzani/cdecl",
-  "description": "Extracts C declarations using universal ctags",
-  "license": "MIT",
-  "url": "https://github.com/marcosbozzani/cdecl/releases/download/v0.1.1/cdecl.exe",
-  "hash": "84be3d74ed329875b08b33c57c82efd89d42a00a7192ac90540c1c46033132cb",
-  "bin": "cdecl.exe",
-  "checkver": {
-    "github": "https://github.com/marcosbozzani/cdecl"
-  },
-  "autoupdate": {
-    "url": "https://github.com/marcosbozzani/cdecl/releases/download/$version/cdecl.exe",
-    "hash": {
-      "url": "https://github.com/marcosbozzani/cdecl/releases/download/$version/cdecl.exe.sha256"
-    }
-  },
-  "depends": "universal-ctags"
+    "version": "0.1.1",
+    "homepage": "https://github.com/marcosbozzani/cdecl",
+    "description": "Extracts C declarations using universal ctags",
+    "license": "MIT",
+    "bin": "cdecl.exe",
+    "url": "https://github.com/marcosbozzani/cdecl/releases/download/v0.1.1/cdecl.exe",
+    "hash": "84be3d74ed329875b08b33c57c82efd89d42a00a7192ac90540c1c46033132cb",
+    "depends": "universal-ctags"
 }

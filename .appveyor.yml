@@ -5,7 +5,8 @@ install:
 
 build_script: 
   - make
-  - ps: echo "$((get-filehash out/bin/release/cdecl.exe).hash) *cdecl.exe" > out/bin/release/cdecl.exe.sha256
+  - ps: $hash = (get-filehash out/bin/release/cdecl.exe).hash
+  - ps: echo "$hash *cdecl.exe" > out/bin/release/cdecl.exe.sha256
   
 test_script: make test
 
@@ -24,3 +25,20 @@ deploy:
     APPVEYOR_REPO_TAG: true
   auth_token:
     secure: EjrQ/UksV/Z9ahXKENFr1gyGO778GPOyIRKvtRUZMWGxQ0SleqQDXMxfRjtqh9jd
+
+after_deploy:
+  - ps: |
+      if (${env:APPVEYOR_REPO_TAG}) {
+        $tag = ${env:APPVEYOR_REPO_TAG_NAME}
+        $manifest = get-content cdecl.json | convertfrom-json
+        $manifest.version = $tag.substring(1)
+        $manifest.url = $manifest.url -replace replace "v([\d.])+", $tag
+        $manifest.hash = $hash
+        $manifest | convertto-json | set-content cdecl.json
+        git add cdecl.json
+        git commit -m "release($tag): update cdecl.json [skip ci]"
+        git push
+      }
+      
+skip_commits:
+  message: /^chore/
