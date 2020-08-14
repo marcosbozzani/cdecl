@@ -5,7 +5,7 @@ install:
 
 build_script: 
   - make
-  - certutil.exe -hashfile out/bin/release/cdecl.exe sha256 | findstr /v "hash" > out/bin/release/cdecl.exe.sha256
+  - ps: echo "$((get-filehash out/bin/release/cdecl.exe).hash) *cdecl.exe" > out/bin/release/cdecl.exe.sha256
   
 test_script: make test
 
