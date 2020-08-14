@@ -1,10 +1,18 @@
 install:
   - ps: iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
   - ps: scoop bucket add extras
-  - ps: scoop install gcc universal-ctags > out-null
+  - ps: scoop install gcc universal-ctags
 
-build_script: 
-  - cmd: make
+build_script: make
   
-test_script: 
-  - cmd: make test
+test_script: make test
+
+deploy:
+  provider: GitHub
+  artifact: out/bin/release/cdecl.exe
+  tag: $(APPVEYOR_REPO_TAG_NAME)
+  description: 'Release $(APPVEYOR_REPO_TAG_NAME)'
+  on:
+    APPVEYOR_REPO_TAG: true
+  auth_token:
+    secure: EjrQ/UksV/Z9ahXKENFr1gyGO778GPOyIRKvtRUZMWGxQ0SleqQDXMxfRjtqh9jd
