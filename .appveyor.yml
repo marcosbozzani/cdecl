@@ -32,7 +32,7 @@ after_deploy:
         $tag = ${env:APPVEYOR_REPO_TAG_NAME}
         $manifest = get-content cdecl.json | convertfrom-json
         $manifest.version = $tag.substring(1)
-        $manifest.url = $manifest.url -replace replace "v([\d.])+", $tag
+        $manifest.url = $manifest.url -replace "v([\d.])+", $tag
         $manifest.hash = $hash
         $manifest | convertto-json | set-content cdecl.json
         git add cdecl.json
