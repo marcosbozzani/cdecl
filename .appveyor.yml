@@ -47,7 +47,7 @@ on_success:
       }
       
 skip_commits:
-  message: /^chore/
+  message: /^chore[:(]/
 
 environment:
   auth_token:
