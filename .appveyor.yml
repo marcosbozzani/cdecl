@@ -1,12 +1,15 @@
 install:
-  - ps: iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
-  - ps: scoop bucket add extras
-  - ps: scoop install gcc universal-ctags
-
+  - ps: |
+      $erroractionpreference = "stop"
+      iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+      scoop bucket add extras
+      scoop install gcc universal-ctags
+      
 build_script: 
   - make
-  - ps: $hash = (get-filehash out/bin/release/cdecl.exe).hash
-  - ps: echo "$hash *cdecl.exe" > out/bin/release/cdecl.exe.sha256
+  - ps: |
+      $hash = (get-filehash out/bin/release/cdecl.exe).hash
+      echo "$hash *cdecl.exe" > out/bin/release/cdecl.exe.sha256
   
 test_script: make test
 
