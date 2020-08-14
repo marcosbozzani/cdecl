@@ -1,10 +1,10 @@
 # cdecl
 
-Extracts `C declarations` using [`universal ctags`](https://ctags.io/)
-
 [![AppVeyor](https://img.shields.io/appveyor/build/marcosbozzani/cdecl)](https://ci.appveyor.com/project/marcosbozzani/cdecl)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/marcosbozzani/cdecl)](https://github.com/marcosbozzani/cdecl/releases/latest)
 [![GitHub](https://img.shields.io/github/license/marcosbozzani/cdecl)](https://github.com/marcosbozzani/cdecl/blob/master/LICENSE)
+
+Extracts `C declarations` using [`universal ctags`](https://ctags.io/)
 
 ## Usage
 
