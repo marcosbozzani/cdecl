@@ -1,0 +1,8 @@
+install:
+  - ps: set-executionpolicy -executionpolicy remotesigned -scope currentuser
+  - ps: iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+  - ps: scoop bucket add extras
+  - ps: scoop install make gcc universal-ctags
+
+build_script: make
+test_script: make test
