@@ -3,17 +3,21 @@ install:
   - ps: scoop bucket add extras
   - ps: scoop install gcc universal-ctags
 
-build_script: make
+build_script: 
+  - make
+  - certutil.exe -hashfile out/bin/release/cdecl.exe sha256 | findstr /v "hash" > out/bin/release/cdecl.exe.sha256
   
 test_script: make test
 
 artifacts:
   - name: cdecl.exe
     path: out/bin/release/cdecl.exe
+  - name: cdecl.exe.sha256
+    path: out/bin/release/cdecl.exe.sha256
 
 deploy:
   provider: GitHub
-  artifact: cdecl.exe
+  artifact: cdecl.exe, cdecl.exe.sha256
   tag: $(APPVEYOR_REPO_TAG_NAME)
   description: 'Release $(APPVEYOR_REPO_TAG_NAME)'
   on:
