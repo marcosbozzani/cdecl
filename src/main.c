@@ -17,6 +17,7 @@ void print_usage();
 char *parse_signature(const char *signature);
 char *parse_properties(const char *properties);
 char *parse_type(const char *typeref);
+bool starts_with(const char *string, const char *prefix);
 
 int main(int argc, char **argv)
 {
@@ -146,11 +147,17 @@ int main(int argc, char **argv)
         }
         else if (!strcmp(kind, "struct") && kinds.structs)
         {
-            printf("typedef struct %s %s;\n", name, name);
+            if (!starts_with(name, "__anon"))
+            {
+                printf("typedef struct %s %s;\n", name, name);
+            }
         }
         else if (!strcmp(kind, "union") && kinds.unions)
         {
-            printf("typedef union %s %s;\n", name, name);
+            if (!starts_with(name, "__anon"))
+            {
+                printf("typedef union %s %s;\n", name, name);
+            }
         }
 
         json_value_free(root);
@@ -265,4 +272,17 @@ char *parse_type(const char *typeref)
     }
 
     return result;
+}
+
+bool starts_with(const char *string, const char *prefix)
+{
+    while (*prefix)
+    {
+        if (*prefix++ != *string++)
+        {
+            return false;
+        }
+    }
+
+    return true;
 }

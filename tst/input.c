@@ -54,8 +54,19 @@ union union_t
     float f;
 };
 
+union
+{
+    char * no_name;
+};
+
+
 struct struct_t
 {
     int i;
     char * s;
+};
+
+struct
+{
+    char * no_name;
 };
