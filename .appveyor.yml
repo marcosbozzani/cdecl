@@ -4,7 +4,7 @@ install:
       iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
       scoop bucket add extras
       scoop install gcc universal-ctags
-      
+
 build_script: 
   - make
   - ps: |
@@ -30,11 +30,13 @@ deploy:
 
 on_success:
   - ps: |
-      if (${env:APPVEYOR_REPO_TAG}) {
-        $tag = ${env:APPVEYOR_REPO_TAG_NAME}
+      $tag = ${env:APPVEYOR_REPO_TAG_NAME}
+      if ($tag) {
+        write-host "updating cdecl.json to $tag"
+
         $manifest = get-content cdecl.json | convertfrom-json
         $manifest.version = $tag.substring(1)
-        $manifest.url = $manifest.url -replace "v([\d.])+", $tag
+        $manifest.url = "https://github.com/marcosbozzani/cdecl/releases/download/$tag/cdecl.exe"
         $manifest.hash = $hash
         $manifest | convertto-json | set-content cdecl.json
         
