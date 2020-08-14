@@ -1,3 +1,4 @@
+SHELL = C:/Windows/System32/cmd.exe
 NAME = cdecl.exe
 SRC_DIR = src
 TST_DIR = tst

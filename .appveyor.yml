@@ -1,9 +1,10 @@
 install:
   - ps: iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
   - ps: scoop bucket add extras
-  - ps: scoop install gcc universal-ctags | out-null
+  - ps: scoop install gcc universal-ctags > out-null
 
 build_script: 
   - cmd: make
+  
 test_script: 
   - cmd: make test
