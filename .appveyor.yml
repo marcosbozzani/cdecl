@@ -1,5 +1,6 @@
 install:
   - ps: |
+      $erroractionpreference = 'stop'
       iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
       scoop bucket add extras
       scoop install gcc universal-ctags
@@ -39,6 +40,7 @@ on_success:
         $manifest.hash = $hash
         $manifest | convertto-json | set-content cdecl.json
         
+        $env:GIT_REDIRECT_STDERR = '2>&1'
         add-content "$HOME\.git-credentials" "https://$($env:auth_token):x-oauth-basic@github.com`n" -nonewline
         git config --global credential.helper store
         git config --global user.email "marcosbozzani@gmail.com"
