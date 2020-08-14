@@ -19,7 +19,7 @@ Extracts `C declarations` using [`universal ctags`](https://ctags.io/)
 # Usage
 
 - run `cdecl <file> [filter]...`
-- exeamples: 
+- examples: 
   - `cdecl file.c`
   - `cdecl file.c structs`
   - `cdecl file.c variables functions`
