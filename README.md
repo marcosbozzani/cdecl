@@ -34,12 +34,8 @@ Extracts `C declarations` using [`universal ctags`](https://ctags.io/)
 
 # Build
 
-1. install or build `universal ctags`:
-   - scoop: `scoop install universal-ctags`
-   - chocolatey: `choco install universal-ctags`
-   - apt: `sudo apt install universal-ctags`
-   - snap: `sudo snap install universal-ctags`
-   - build: `https://docs.ctags.io/en/latest/building.html`
+1. prerequisites: `make`, `gcc` and `universal ctags`:
+   - if you use scoop: `scoop install gcc universal-ctags`
 2. clone `git clone https://github.com/marcosbozzani/cdecl.git`
 3. run `make`
 
