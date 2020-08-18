@@ -1,16 +1,14 @@
 {
-    "configurations": [
-        {
-            "name": "Win32",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "defines": ["_GNU_SOURCE", "__USE_MINGW_ANSI_STDIO"],
-            "compilerPath": "${SCOOP_APPS}/gcc/current/bin/gcc.exe",
-            "cStandard": "c11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64"
-        }
-    ],
-    "version": 4
+  "configurations": [
+    {
+      "name": "Win32",
+      "includePath": ["${workspaceFolder}/**"],
+      "defines": ["_GNU_SOURCE"],
+      "compilerPath": "${SCOOP_APPS}/gcc/current/bin/gcc.exe",
+      "cStandard": "c11",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "gcc-x64"
+    }
+  ],
+  "version": 4
 }
