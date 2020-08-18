@@ -3,9 +3,10 @@ NAME = cdecl.exe
 SRC_DIR = src
 TST_DIR = tst
 OUT_DIR = out
-CFLAGS = -std=c11 
-CLFAGS += -Wall -Werror
+CFLAGS = -std=c11
 CFLAGS += -D_GNU_SOURCE
+CFLAGS += -fvisibility=hidden
+CFLAGS += -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
 
 DEBUG = $(filter debug,$(MAKECMDGOALS))
 TARGET = $(if $(DEBUG),debug,release)
@@ -35,9 +36,11 @@ $(OBJ_DIR):
 	$(call mkdirp, $@)
 
 $(BIN): $(OBJS) | $(BIN_DIR)
+	@echo gcc $^ -o $@ $(CFLAGS)
 	@gcc $^ -o $@ $(CFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	@echo gcc -c $< -o $@ $(CFLAGS) -MMD
 	@gcc -c $< -o $@ $(CFLAGS) -MMD
 	
 test: $(BIN_DIR)/test.exe
