@@ -107,7 +107,7 @@ int main(int argc, char **argv)
                 char *props = parse_properties(properties);
                 bool is_static = strstr(props, "static") != null;
 
-                if (is_static && kinds.static_variables || !is_static && kinds.variables)
+                if ((is_static && kinds.static_variables) || (!is_static && kinds.variables))
                 {
                     printf("%s %s %s;\n", props, type, name);
                 }
@@ -134,7 +134,7 @@ int main(int argc, char **argv)
                 char *props = parse_properties(properties);
                 bool is_static = strstr(props, "static") != null;
 
-                if (is_static && kinds.static_functions || !is_static && kinds.functions)
+                if ((is_static && kinds.static_functions) || (!is_static && kinds.functions))
                 {
                     printf("%s %s %s%s;\n", props, type, name, sign);
                 }

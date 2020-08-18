@@ -34,7 +34,7 @@ stream_t *stream_open_process(const char *command, const char *mode)
 
 void stream_close_process(stream_t *stream)
 {
-    if (!pclose(stream) < 0)
+    if (pclose(stream) < 0)
     {
         fprintf(stderr, "Error closing process stream");
         abort();
