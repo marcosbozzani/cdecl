@@ -46,9 +46,17 @@ on_success:
         git config --global user.email "marcosbozzani@gmail.com"
         git config --global user.name "marcosbozzani"
         git config --global core.autocrlf true
+
         git checkout master
         git add cdecl.json
         git commit -m "release($tag): update cdecl.json [skip ci]"
+        git push
+
+        git clone https://github.com/marcosbozzani/scoop.git
+        cp cdecl.json scoop/bucket
+        cd scoop
+        git add bucket/cdecl.json
+        git commit -m "feat: update cdecl.json $tag"
         git push
       }
       
