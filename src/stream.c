@@ -14,7 +14,7 @@ stream_t *stream_open_file(const char *file, const char *mode)
 
 void stream_close_file(stream_t *stream)
 {
-    if (!fclose(stream))
+    if (fclose(stream) != 0)
     {
         fprintf(stderr, "Error closing file stream");
         abort();
