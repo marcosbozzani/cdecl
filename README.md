@@ -9,8 +9,8 @@ Extracts `C declarations` using [`universal ctags`](https://ctags.io/)
 # Install
 
 - scoop: 
-  1. run `scoop bucket add extras`
-  2. run `scoop install https://github.com/marcosbozzani/cdecl/raw/master/cdecl.json`
+  1. run `scoop bucket add marcosbozzani https://github.com/marcosbozzani/scoop`
+  2. run `scoop install cdecl`
 
 - manual:
   1. download the [latest release](https://github.com/marcosbozzani/cdecl/releases/latest)
@@ -31,11 +31,12 @@ Extracts `C declarations` using [`universal ctags`](https://ctags.io/)
   - static_variables
   - static_functions
 
-
 # Build
 
 1. prerequisites: `make`, `gcc` and `universal ctags`:
-   - if you use scoop: `scoop install gcc universal-ctags`
+   - if you use scoop: 
+     - `scoop add extras` (for universal-ctags)
+     - `scoop install gcc universal-ctags`
 2. clone `git clone https://github.com/marcosbozzani/cdecl.git`
 3. run `make`
 
