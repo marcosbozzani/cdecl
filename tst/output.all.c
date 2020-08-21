@@ -13,3 +13,4 @@ static void s_void_func_int_str(int i, char * s);
 inline static void inline_func();
 typedef union union_t union_t;
 typedef struct struct_t struct_t;
+typedef enum enum_t enum_t;

@@ -70,3 +70,14 @@ struct
 {
     char * no_name;
 };
+
+enum enum_t
+{
+    const1,
+    const2
+};
+
+enum
+{
+    no_name
+};

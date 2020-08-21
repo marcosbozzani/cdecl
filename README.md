@@ -24,6 +24,7 @@ Extracts `C declarations` using [`universal ctags`](https://ctags.io/)
   - `cdecl file.c structs`
   - `cdecl file.c variables functions`
 - available filters:
+  - enums
   - unions
   - structs
   - variables

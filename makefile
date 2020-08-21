@@ -45,6 +45,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	
 test: $(BIN_DIR)/test.exe
 	$(call test,all)
+	$(call test,enums)
 	$(call test,unions)
 	$(call test,structs)
 	$(call test,functions)

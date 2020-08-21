@@ -5,6 +5,7 @@
 typedef struct kinds_t kinds_t;
 struct kinds_t
 {
+    bool enums;
     bool unions;
     bool structs;
     bool variables;
@@ -31,6 +32,7 @@ int main(int argc, char **argv)
 
     if (argc == 2)
     {
+        kinds.enums = true;
         kinds.unions = true;
         kinds.structs = true;
         kinds.variables = true;
@@ -42,6 +44,10 @@ int main(int argc, char **argv)
     {
         for (int i = 2; i < argc; i++)
         {
+            if (!strcmp("enums", argv[i]))
+            {
+                kinds.enums = true;
+            }
             if (!strcmp("unions", argv[i]))
             {
                 kinds.unions = true;
@@ -70,7 +76,7 @@ int main(int argc, char **argv)
     }
 
     const char *ctags = "ctags --sort=no --output-format=json --language-force=c "
-                        "--c-kinds=\"{struct}{union}{variable}{function}\" "
+                        "--c-kinds=\"{struct}{union}{enum}{variable}{function}\" "
                         "--fields=\"{kind}{name}{typeref}{signature}\" --fields-c=\"{properties}\" ";
 
     char *command = null;
@@ -159,6 +165,13 @@ int main(int argc, char **argv)
                 printf("typedef union %s %s;\n", name, name);
             }
         }
+        else if (!strcmp(kind, "enum") && kinds.enums)
+        {
+            if (!starts_with(name, "__anon"))
+            {
+                printf("typedef enum %s %s;\n", name, name);
+            }
+        }
 
         json_value_free(root);
     }
@@ -173,6 +186,7 @@ void print_usage()
 {
     puts("usage: cdecl file.c [kinds]");
     puts("kinds:");
+    puts(" - enums");
     puts(" - unions");
     puts(" - structs");
     puts(" - variables");
